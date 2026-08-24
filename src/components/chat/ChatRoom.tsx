@@ -741,9 +741,26 @@ export function ChatRoom() {
           const senderProfile = profilesCache[msg.sender_id];
           const senderDisplayName = senderProfile?.display_name || (isMySentMessage ? 'You' : 'Member');
 
+          // Parent message lookup for reply preview
+          const parentMsg = msg.reply_to_message_id ? messages.find((m) => m.id === msg.reply_to_message_id) : null;
+          const parentSenderProfile = parentMsg ? profilesCache[parentMsg.sender_id] : null;
+          const parentSenderName = parentMsg
+            ? parentSenderProfile?.display_name || (parentMsg.sender_id === currentProfile?.id ? 'You' : 'Member')
+            : 'Member';
+          const parentSnippet = parentMsg
+            ? parentMsg.message_type === 'audio'
+              ? '🎤 Voice Note'
+              : parentMsg.message_type === 'image'
+              ? '📷 Photo'
+              : parentMsg.message_type === 'video'
+              ? '🎥 Video'
+              : parentMsg.content
+            : '';
+
           return (
             <div
               key={msg.id}
+              id={`msg-${msg.id}`}
               className={`chat__message ${
                 isSystem
                   ? 'chat__message--system'
@@ -786,6 +803,29 @@ export function ChatRoom() {
                     {!isMySentMessage && (
                       <div style={{ fontSize: '0.7rem', fontWeight: 600, color: '#4fc3f7', marginBottom: '4px' }}>
                         {senderDisplayName}
+                      </div>
+                    )}
+
+                    {/* QUOTED REPLY PREVIEW */}
+                    {parentMsg && (
+                      <div
+                        className="chat__message-quote"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          const parentEl = document.getElementById(`msg-${parentMsg.id}`);
+                          if (parentEl) {
+                            parentEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                          }
+                        }}
+                        style={{ cursor: 'pointer' }}
+                        title="Click to jump to original message"
+                      >
+                        <div className="chat__quote-author">
+                          ↩ {parentSenderName}
+                        </div>
+                        <div className="chat__quote-snippet">
+                          {parentSnippet}
+                        </div>
                       </div>
                     )}
 
