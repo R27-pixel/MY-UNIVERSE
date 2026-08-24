@@ -126,31 +126,6 @@ MYUNIVERSE/
 
 ---
 
-## 🔗 Connecting to Git (Step-by-Step)
-
-To initialize Git and push this repository to GitHub/GitLab:
-
-```bash
-# 1. Initialize Git repository
-git init
-
-# 2. Add files to staging
-git add .
-
-# 3. Create initial commit
-git commit -m "feat: Our Universe V2 production release"
-
-# 4. Rename main branch
-git branch -M main
-
-# 5. Add remote GitHub repository URL
-git remote add origin https://github.com/YOUR_USERNAME/YOUR_REPOSITORY.git
-
-# 6. Push code to remote repository
-git push -u origin main
-```
-
----
 
 ## 🌐 Deploying to Vercel
 
@@ -161,7 +136,10 @@ Our Universe V2 is pre-configured for one-click Vercel deployments:
 3. Deploy! Vercel will automatically build the Vite production bundle and apply the SPA rewrite rules in `vercel.json`.
 
 ---
+<img width="947" height="416" alt="image" src="https://github.com/user-attachments/assets/da3940c0-e146-4cd8-b040-9ceba378b668" />
+<img width="946" height="428" alt="image" src="https://github.com/user-attachments/assets/7261cebe-1614-49a3-a4af-9f88912fed09" />
+<img width="959" height="439" alt="image" src="https://github.com/user-attachments/assets/cfd71c54-b348-4d59-9355-36a3369d7835" />
+<img width="674" height="413" alt="image" src="https://github.com/user-attachments/assets/219cbd44-020d-452a-9ab9-c78655f80fc1" />
 
-## 📄 License
 
-Distributed under the **MIT License**. See `LICENSE` for details.
+
