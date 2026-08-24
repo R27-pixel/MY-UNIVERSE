@@ -1,0 +1,307 @@
+.identity-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(3, 3, 12, 0.92);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  animation: fadeIn 0.6s var(--ease-out) forwards;
+}
+
+.identity-card {
+  width: min(92%, 460px);
+  padding: 32px;
+  background: rgba(12, 12, 30, 0.88);
+  border: 1px solid rgba(79, 195, 247, 0.25);
+  border-radius: var(--radius-xl, 24px);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 30px rgba(79, 195, 247, 0.1);
+  text-align: center;
+  transition: transform 0.3s ease;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.identity-card--shake {
+  animation: identityShake 0.4s ease;
+}
+
+@keyframes identityShake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-10px); }
+  40%, 80% { transform: translateX(10px); }
+}
+
+.identity-logo {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.7rem;
+  letter-spacing: 0.25em;
+  color: #4fc3f7;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.identity-title {
+  font-family: var(--font-heading, sans-serif);
+  font-size: 1.6rem;
+  font-weight: 300;
+  color: var(--text-primary, #ffffff);
+  letter-spacing: 0.02em;
+  margin-bottom: 6px;
+}
+
+.identity-subtitle {
+  font-family: var(--font-body, sans-serif);
+  font-size: 0.85rem;
+  color: var(--text-secondary, #a0a0c0);
+  margin-bottom: 24px;
+}
+
+/* ── Auth Tabs ── */
+.identity-tabs {
+  display: flex;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 4px;
+  margin-bottom: 20px;
+}
+
+.identity-tab-btn {
+  flex: 1;
+  padding: 10px;
+  background: none;
+  border: none;
+  border-radius: 8px;
+  color: #8888aa;
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.identity-tab-btn--active {
+  background: rgba(79, 195, 247, 0.15);
+  color: #4fc3f7;
+  border: 1px solid rgba(79, 195, 247, 0.3);
+}
+
+/* ── Invitation Banner ── */
+.identity-invite-banner {
+  background: linear-gradient(135deg, rgba(79, 195, 247, 0.15), rgba(156, 108, 255, 0.15));
+  border: 1px solid rgba(79, 195, 247, 0.4);
+  border-radius: 12px;
+  padding: 12px;
+  font-size: 0.8rem;
+  color: #e0f7fa;
+  margin-bottom: 20px;
+  line-height: 1.4;
+}
+
+/* ── Form Inputs ── */
+.identity-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  text-align: left;
+}
+
+.identity-input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.identity-input-group label {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.7rem;
+  color: #9999bb;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.identity-input {
+  width: 100%;
+  padding: 12px 16px;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  color: #ffffff;
+  font-family: var(--font-body, sans-serif);
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.identity-input:focus {
+  border-color: #4fc3f7;
+  box-shadow: 0 0 10px rgba(79, 195, 247, 0.2);
+}
+
+.identity-error-msg {
+  font-size: 0.8rem;
+  color: #ff5252;
+  font-family: var(--font-mono, monospace);
+  margin-top: 4px;
+}
+
+.identity-success-msg {
+  font-size: 0.8rem;
+  color: #66bb6a;
+  font-family: var(--font-mono, monospace);
+  margin-top: 4px;
+}
+
+/* ── Buttons ── */
+.identity-submit-btn {
+  width: 100%;
+  padding: 12px;
+  background: linear-gradient(135deg, rgba(79, 195, 247, 0.2), rgba(156, 108, 255, 0.2));
+  border: 1px solid rgba(79, 195, 247, 0.4);
+  border-radius: 12px;
+  color: #ffffff;
+  font-family: var(--font-heading);
+  font-weight: 500;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-top: 8px;
+}
+
+.identity-submit-btn:hover:not(:disabled) {
+  background: linear-gradient(135deg, rgba(79, 195, 247, 0.35), rgba(156, 108, 255, 0.35));
+  border-color: rgba(79, 195, 247, 0.8);
+  box-shadow: 0 4px 15px rgba(79, 195, 247, 0.3);
+}
+
+.identity-submit-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.identity-secondary-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 12px;
+  color: #cccccc;
+  padding: 10px 16px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.identity-secondary-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+}
+
+/* ── Universe List & Items ── */
+.identity-universe-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.identity-universe-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  transition: all 0.25s ease;
+  text-align: left;
+}
+
+.identity-universe-item:hover {
+  background: rgba(79, 195, 247, 0.08);
+  border-color: rgba(79, 195, 247, 0.4);
+  transform: translateY(-2px);
+}
+
+.identity-universe-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.identity-universe-title {
+  font-family: var(--font-heading);
+  font-weight: 500;
+  font-size: 1.05rem;
+  color: #ffffff;
+}
+
+.identity-universe-sub {
+  font-size: 0.78rem;
+  color: #8888aa;
+  margin-top: 2px;
+}
+
+.identity-role-badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 6px;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-top: 4px;
+}
+
+.identity-role-badge--owner {
+  background: rgba(255, 215, 0, 0.15);
+  color: #ffd700;
+  border: 1px solid rgba(255, 215, 0, 0.3);
+}
+
+.identity-role-badge--admin {
+  background: rgba(79, 195, 247, 0.15);
+  color: #4fc3f7;
+  border: 1px solid rgba(79, 195, 247, 0.3);
+}
+
+.identity-role-badge--traveler {
+  background: rgba(156, 108, 255, 0.15);
+  color: #9c6cff;
+  border: 1px solid rgba(156, 108, 255, 0.3);
+}
+
+.identity-role-badge--guest {
+  background: rgba(255, 255, 255, 0.1);
+  color: #aaaaaa;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.identity-enter-btn {
+  padding: 8px 14px;
+  background: rgba(79, 195, 247, 0.15);
+  border: 1px solid rgba(79, 195, 247, 0.4);
+  border-radius: 10px;
+  color: #4fc3f7;
+  font-size: 0.82rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.identity-enter-btn:hover {
+  background: rgba(79, 195, 247, 0.3);
+  color: #ffffff;
+}
+
+.identity-actions-row {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 16px;
+}
+
+.identity-user-tag {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: #8888aa;
+  margin-bottom: 16px;
+}

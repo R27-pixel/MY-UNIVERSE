@@ -1,0 +1,384 @@
+/* ============================================
+   Big Bang Flash — Cinematic Explosion
+   ============================================ */
+
+.bigbang {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-sequence);
+  background: var(--void);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.bigbang--fade-out {
+  animation: bigbangFadeOut 2s var(--ease-out) forwards;
+}
+
+/* ── "BIG BANG" Text ── */
+
+.bigbang__text {
+  position: absolute;
+  z-index: 10;
+  font-family: var(--font-heading);
+  font-weight: 100;
+  font-size: clamp(3rem, 12vw, 10rem);
+  color: transparent;
+  letter-spacing: 0.5em;
+  text-transform: uppercase;
+  pointer-events: none;
+  opacity: 0;
+  background: linear-gradient(
+    135deg,
+    #ffd700 0%,
+    #fff 30%,
+    #4fc3f7 60%,
+    #ffd700 100%
+  );
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 40px rgba(255, 215, 0, 0.6))
+    drop-shadow(0 0 80px rgba(79, 195, 247, 0.4));
+}
+
+.bigbang__text--visible {
+  animation:
+    textReveal 1.2s var(--ease-out) forwards,
+    textGlow 1.2s ease-in-out forwards,
+    textShimmer 1.2s linear forwards;
+}
+
+.bigbang__text--explode {
+  animation: textExplode 0.6s var(--ease-out) forwards;
+}
+
+@keyframes textReveal {
+  0% {
+    opacity: 0;
+    letter-spacing: 1.5em;
+    filter: drop-shadow(0 0 0 transparent) blur(10px);
+  }
+  40% {
+    opacity: 1;
+    filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.4)) blur(0px);
+  }
+  100% {
+    opacity: 1;
+    letter-spacing: 0.3em;
+    filter: drop-shadow(0 0 60px rgba(255, 215, 0, 0.8))
+      drop-shadow(0 0 120px rgba(79, 195, 247, 0.5));
+  }
+}
+
+@keyframes textShimmer {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+
+@keyframes textGlow {
+  0% { text-shadow: none; }
+  50% {
+    text-shadow:
+      0 0 20px rgba(255, 215, 0, 0.3),
+      0 0 60px rgba(255, 215, 0, 0.2),
+      0 0 100px rgba(79, 195, 247, 0.15);
+  }
+  100% {
+    text-shadow:
+      0 0 40px rgba(255, 215, 0, 0.5),
+      0 0 80px rgba(255, 215, 0, 0.3),
+      0 0 160px rgba(79, 195, 247, 0.3);
+  }
+}
+
+@keyframes textExplode {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+    letter-spacing: 0.3em;
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.3);
+    letter-spacing: 0.8em;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(3);
+    letter-spacing: 2em;
+    filter: blur(20px);
+  }
+}
+
+/* ── Singularity Point ── */
+
+.bigbang__singularity {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #fff;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  z-index: 5;
+}
+
+.bigbang__singularity--active {
+  animation: singularityPulse 1.5s ease-in-out forwards;
+}
+
+.bigbang__singularity--explode {
+  animation: singularityExplode 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+@keyframes singularityPulse {
+  0% {
+    opacity: 0;
+    width: 2px;
+    height: 2px;
+    box-shadow: 0 0 10px #fff;
+  }
+  50% {
+    opacity: 1;
+    width: 8px;
+    height: 8px;
+    box-shadow:
+      0 0 20px #fff,
+      0 0 40px rgba(255, 215, 0, 0.5),
+      0 0 80px rgba(79, 195, 247, 0.3);
+  }
+  100% {
+    opacity: 1;
+    width: 12px;
+    height: 12px;
+    box-shadow:
+      0 0 30px #fff,
+      0 0 60px rgba(255, 215, 0, 0.8),
+      0 0 120px rgba(79, 195, 247, 0.5),
+      0 0 200px rgba(156, 108, 255, 0.3);
+  }
+}
+
+@keyframes singularityExplode {
+  0% {
+    width: 12px;
+    height: 12px;
+    opacity: 1;
+  }
+  100% {
+    width: 300vmax;
+    height: 300vmax;
+    opacity: 0.95;
+    box-shadow:
+      0 0 100px #fff,
+      0 0 200px rgba(255, 215, 0, 0.5);
+  }
+}
+
+/* ── White Flash ── */
+
+.bigbang__flash {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at center,
+    #ffffff 0%,
+    rgba(255, 245, 220, 0.95) 20%,
+    rgba(79, 195, 247, 0.4) 50%,
+    rgba(156, 108, 255, 0.2) 70%,
+    transparent 100%
+  );
+  opacity: 0;
+  z-index: 20;
+  pointer-events: none;
+}
+
+.bigbang__flash--active {
+  animation: flashBurst 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes flashBurst {
+  0% { opacity: 1; }
+  30% { opacity: 0.9; }
+  100% { opacity: 0; }
+}
+
+/* ── Energy Rings ── */
+
+.bigbang__rings {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 8;
+  pointer-events: none;
+}
+
+.bigbang__ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.6);
+  opacity: 0;
+}
+
+.bigbang__ring--1 {
+  animation: ringExpand 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  border-color: rgba(255, 215, 0, 0.6);
+}
+
+.bigbang__ring--2 {
+  animation: ringExpand 1.5s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards;
+  border-color: rgba(79, 195, 247, 0.5);
+}
+
+.bigbang__ring--3 {
+  animation: ringExpand 1.5s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+  border-color: rgba(156, 108, 255, 0.4);
+}
+
+.bigbang__ring--4 {
+  animation: ringExpand 1.5s cubic-bezier(0.16, 1, 0.3, 1) 0.35s forwards;
+  border-color: rgba(255, 107, 53, 0.3);
+}
+
+@keyframes ringExpand {
+  0% {
+    width: 0;
+    height: 0;
+    opacity: 0.8;
+    border-width: 3px;
+  }
+  60% {
+    opacity: 0.4;
+  }
+  100% {
+    width: 200vmax;
+    height: 200vmax;
+    opacity: 0;
+    border-width: 1px;
+  }
+}
+
+/* ── Particles ── */
+
+.bigbang__particles {
+  position: absolute;
+  inset: 0;
+  z-index: 9;
+  pointer-events: none;
+}
+
+.bigbang__particle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: #fff;
+  opacity: 0;
+}
+
+.bigbang__particle--active {
+  animation: particleFly var(--fly-duration, 2s) var(--ease-out) forwards;
+}
+
+@keyframes particleFly {
+  0% {
+    opacity: 1;
+    transform: translate(-50%, -50%) translate(0, 0) scale(1);
+  }
+  30% {
+    opacity: 0.9;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%)
+      translate(
+        var(--tx, 100px),
+        var(--ty, 100px)
+      )
+      scale(0.2);
+  }
+}
+
+/* ── Streaks (speed lines) ── */
+
+.bigbang__streaks {
+  position: absolute;
+  inset: 0;
+  z-index: 7;
+  pointer-events: none;
+  opacity: 0;
+}
+
+.bigbang__streaks--active {
+  animation: streaksShow 1.8s var(--ease-out) forwards;
+}
+
+@keyframes streaksShow {
+  0% { opacity: 0; }
+  10% { opacity: 0.7; }
+  100% { opacity: 0; }
+}
+
+.bigbang__streak {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  height: 1px;
+  transform-origin: left center;
+  background: linear-gradient(90deg, rgba(255,255,255,0.8), transparent);
+  opacity: 0.7;
+}
+
+/* ── Afterglow ── */
+
+.bigbang__afterglow {
+  position: absolute;
+  inset: 0;
+  z-index: 6;
+  opacity: 0;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(79, 195, 247, 0.08) 0%,
+    rgba(156, 108, 255, 0.04) 40%,
+    transparent 70%
+  );
+  pointer-events: none;
+}
+
+.bigbang__afterglow--active {
+  animation: afterglowFade 3s ease-in-out forwards;
+}
+
+@keyframes afterglowFade {
+  0% { opacity: 0; }
+  30% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+/* ── Overall Fade Out ── */
+
+@keyframes bigbangFadeOut {
+  0% { opacity: 1; background: transparent; }
+  100% { opacity: 0; pointer-events: none; }
+}
+
+/* ── Mobile ── */
+
+@media (max-width: 768px) {
+  .bigbang__text {
+    font-size: clamp(2rem, 10vw, 5rem);
+    letter-spacing: 0.3em;
+  }
+}

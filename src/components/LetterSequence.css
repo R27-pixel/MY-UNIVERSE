@@ -1,0 +1,160 @@
+.letter {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-sequence);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  transition: background 2s var(--ease-out);
+  padding: var(--space-xl);
+  overflow-y: auto;
+  touch-action: pan-y;
+  -webkit-overflow-scrolling: touch;
+}
+
+.letter--dark {
+  background: rgba(5, 5, 14, 0.96);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+}
+
+/* ── Paper Container ── */
+
+.letter__paper {
+  max-width: 620px;
+  width: 100%;
+  max-height: 85vh;
+  overflow-y: auto;
+  touch-action: pan-y;
+  -webkit-overflow-scrolling: touch;
+  padding: var(--space-3xl) var(--space-2xl);
+  background: rgba(14, 14, 28, 0.85);
+  border: 1px solid rgba(79, 195, 247, 0.18);
+  border-radius: 24px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8), 0 0 30px rgba(79, 195, 247, 0.1);
+  opacity: 0;
+  transform: scale(0.92) translateY(15px);
+  transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+  scrollbar-width: thin;
+  scrollbar-color: rgba(79, 195, 247, 0.3) transparent;
+}
+
+.letter__paper--visible {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+}
+
+/* Custom Scrollbar for Paper */
+.letter__paper::-webkit-scrollbar {
+  width: 5px;
+}
+
+.letter__paper::-webkit-scrollbar-thumb {
+  background: rgba(79, 195, 247, 0.3);
+  border-radius: 4px;
+}
+
+/* ── Title ── */
+
+.letter__title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 300;
+  font-size: clamp(1.4rem, 4vw, 1.9rem);
+  color: #ffd700;
+  margin-bottom: var(--space-2xl);
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 1s var(--ease-out);
+  letter-spacing: 0.05em;
+  text-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+  text-transform: uppercase;
+}
+
+.letter__title--visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Body ── */
+
+.letter__body {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  margin-bottom: var(--space-2xl);
+}
+
+.letter__paragraph {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 300;
+  font-size: clamp(0.92rem, 2.5vw, 1.08rem);
+  color: rgba(255, 255, 255, 0.82);
+  line-height: 1.8;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.letter__paragraph--visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.letter__paragraph--highlight {
+  color: #ffd700;
+  font-weight: 500;
+  font-size: clamp(1rem, 2.7vw, 1.15rem);
+  text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+}
+
+/* ── Actions ── */
+
+.letter__actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: var(--space-xl);
+  padding-top: var(--space-md);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.letter__skip,
+.letter__continue {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 20px;
+  color: rgba(255, 255, 255, 0.85);
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 8px 18px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.letter__skip:hover,
+.letter__continue:hover {
+  background: rgba(79, 195, 247, 0.18);
+  border-color: rgba(79, 195, 247, 0.5);
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+/* ── Mobile Touch Optimizations ── */
+
+@media (max-width: 768px) {
+  .letter {
+    padding: var(--space-md);
+  }
+
+  .letter__paper {
+    padding: var(--space-xl) var(--space-md);
+    max-height: 88vh;
+  }
+}

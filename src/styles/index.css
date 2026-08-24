@@ -1,0 +1,437 @@
+/* ============================================
+   OUR UNIVERSE — Design System
+   ============================================ */
+
+:root {
+  /* ── Colors ── */
+  --void: #000000;
+  --deep-space: #050510;
+  --midnight: #0a0a1a;
+  --cosmos: #0d1117;
+  --nebula-purple: #2d1b69;
+  --nebula-blue: #1a1a4e;
+  --nebula-rose: #3d1a3e;
+  --star-white: #e8e6e3;
+  --star-gold: #ffd700;
+  --star-blue: #7ec8e3;
+  --accent-warm: #ff6b35;
+  --accent-cool: #4fc3f7;
+  --accent-rose: #e91e8a;
+  --accent-violet: #9c6cff;
+
+  /* ── Glass ── */
+  --glass-bg: rgba(255, 255, 255, 0.03);
+  --glass-bg-hover: rgba(255, 255, 255, 0.06);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --glass-border-hover: rgba(255, 255, 255, 0.15);
+  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+
+  /* ── Text ── */
+  --text-primary: rgba(255, 255, 255, 0.92);
+  --text-secondary: rgba(255, 255, 255, 0.55);
+  --text-muted: rgba(255, 255, 255, 0.25);
+  --text-accent: var(--accent-cool);
+
+  /* ── Fonts ── */
+  --font-heading: 'Outfit', -apple-system, sans-serif;
+  --font-body: 'Space Grotesk', -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+
+  /* ── Spacing ── */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-2xl: 48px;
+  --space-3xl: 64px;
+
+  /* ── Border Radius ── */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-full: 9999px;
+
+  /* ── Transitions ── */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --duration-fast: 150ms;
+  --duration-normal: 300ms;
+  --duration-slow: 600ms;
+  --duration-cinematic: 1200ms;
+
+  /* ── Z-Indices ── */
+  --z-canvas: 0;
+  --z-overlay: 100;
+  --z-hud: 200;
+  --z-modal: 300;
+  --z-sequence: 400;
+  --z-loading: 500;
+  --z-top: 999;
+
+  /* ── Safe Areas (mobile) ── */
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-left: env(safe-area-inset-left, 0px);
+  --safe-right: env(safe-area-inset-right, 0px);
+}
+
+/* ============================================
+   Global Resets
+   ============================================ */
+
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: var(--void);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: none;
+}
+
+/* ============================================
+   Typography
+   ============================================ */
+
+.text-heading {
+  font-family: var(--font-heading);
+  font-weight: 300;
+  letter-spacing: 0.02em;
+  line-height: 1.2;
+}
+
+.text-body {
+  font-family: var(--font-body);
+  font-weight: 300;
+  letter-spacing: 0.01em;
+  line-height: 1.7;
+}
+
+.text-mono {
+  font-family: var(--font-mono);
+  font-weight: 400;
+  font-size: 0.85em;
+  letter-spacing: 0.04em;
+}
+
+.text-xs { font-size: 0.7rem; }
+.text-sm { font-size: 0.8rem; }
+.text-base { font-size: 1rem; }
+.text-lg { font-size: 1.25rem; }
+.text-xl { font-size: 1.5rem; }
+.text-2xl { font-size: 2rem; }
+.text-3xl { font-size: 2.5rem; }
+.text-4xl { font-size: 3.5rem; }
+
+/* ============================================
+   Glass / Holographic UI
+   ============================================ */
+
+.glass-panel {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: var(--glass-shadow);
+  transition: all var(--duration-normal) var(--ease-out);
+}
+
+.glass-panel:hover {
+  background: var(--glass-bg-hover);
+  border-color: var(--glass-border-hover);
+}
+
+.glass-panel--glow {
+  box-shadow:
+    var(--glass-shadow),
+    0 0 30px rgba(79, 195, 247, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+/* ============================================
+   Film Grain Overlay
+   ============================================ */
+
+.film-grain {
+  position: fixed;
+  top: -50%;
+  left: -50%;
+  right: -50%;
+  bottom: -50%;
+  width: 200%;
+  height: 200%;
+  z-index: var(--z-overlay);
+  pointer-events: none;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  animation: grain 0.5s steps(1) infinite;
+}
+
+@keyframes grain {
+  0%, 100% { transform: translate(0, 0); }
+  10% { transform: translate(-5%, -10%); }
+  20% { transform: translate(-15%, 5%); }
+  30% { transform: translate(7%, -25%); }
+  40% { transform: translate(-5%, 25%); }
+  50% { transform: translate(-15%, 10%); }
+  60% { transform: translate(15%, 0%); }
+  70% { transform: translate(0%, 15%); }
+  80% { transform: translate(3%, 35%); }
+  90% { transform: translate(-10%, 10%); }
+}
+
+/* ============================================
+   Scanline Effect
+   ============================================ */
+
+.scanlines {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-overlay);
+  pointer-events: none;
+  opacity: 0.03;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(255, 255, 255, 0.03) 2px,
+    rgba(255, 255, 255, 0.03) 4px
+  );
+}
+
+/* ============================================
+   Animated Borders
+   ============================================ */
+
+.animated-border {
+  position: relative;
+  overflow: hidden;
+}
+
+.animated-border::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(
+    135deg,
+    rgba(79, 195, 247, 0.3),
+    rgba(156, 108, 255, 0.1),
+    rgba(255, 107, 53, 0.1),
+    rgba(79, 195, 247, 0.3)
+  );
+  background-size: 300% 300%;
+  animation: borderGlow 6s ease-in-out infinite;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+@keyframes borderGlow {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* ============================================
+   Text Animation Utilities
+   ============================================ */
+
+.fade-in {
+  animation: fadeIn var(--duration-cinematic) var(--ease-out) forwards;
+  opacity: 0;
+}
+
+.fade-up {
+  animation: fadeUp var(--duration-cinematic) var(--ease-out) forwards;
+  opacity: 0;
+}
+
+.type-reveal {
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 2px solid var(--text-muted);
+  animation:
+    typeReveal 3s steps(40) forwards,
+    blinkCaret 0.7s step-end infinite;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes typeReveal {
+  from { max-width: 0; }
+  to { max-width: 100%; }
+}
+
+@keyframes blinkCaret {
+  from, to { border-color: transparent; }
+  50% { border-color: var(--text-muted); }
+}
+
+/* ============================================
+   Cursor
+   ============================================ */
+
+.custom-cursor {
+  cursor: none;
+}
+
+/* ============================================
+   Responsive / Mobile
+   ============================================ */
+
+@media (max-width: 768px) {
+  :root {
+    --space-lg: 16px;
+    --space-xl: 24px;
+    --space-2xl: 32px;
+    --space-3xl: 48px;
+  }
+
+  .text-4xl { font-size: 2rem; }
+  .text-3xl { font-size: 1.75rem; }
+  .text-2xl { font-size: 1.5rem; }
+  .text-xl { font-size: 1.25rem; }
+}
+
+@media (max-width: 480px) {
+  .text-4xl { font-size: 1.75rem; }
+  .text-3xl { font-size: 1.5rem; }
+}
+
+/* ============================================
+   Reduced Motion
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .film-grain,
+  .scanlines {
+    display: none;
+  }
+}
+
+/* ============================================
+   Scrollbar (for chat)
+   ============================================ */
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: var(--glass-border);
+  border-radius: var(--radius-full);
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: var(--glass-border-hover);
+}
+
+/* ============================================
+   Selection
+   ============================================ */
+
+::selection {
+  background: rgba(79, 195, 247, 0.2);
+  color: var(--text-primary);
+}
+
+/* ============================================
+   R27 Bypass Button
+   ============================================ */
+
+.r27-bypass-btn {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  z-index: 9999;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  font-family: var(--font-mono, monospace);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: rgba(255, 255, 255, 0.85);
+  background: rgba(10, 10, 26, 0.8);
+  border: 1px solid rgba(79, 195, 247, 0.35);
+  border-radius: 20px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5), 0 0 12px rgba(79, 195, 247, 0.2);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  user-select: none;
+}
+
+.r27-bypass-btn:hover {
+  background: rgba(79, 195, 247, 0.18);
+  border-color: rgba(79, 195, 247, 0.85);
+  color: #ffffff;
+  box-shadow: 0 4px 20px rgba(79, 195, 247, 0.4);
+  transform: translateY(-1px) scale(1.03);
+}
+
+.r27-bypass-btn:active {
+  transform: translateY(0) scale(0.97);
+}
+
+.r27-bypass-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #4fc3f7;
+  box-shadow: 0 0 8px #4fc3f7;
+  animation: r27Pulse 2s infinite ease-in-out;
+}
+
+@keyframes r27Pulse {
+  0%, 100% { opacity: 0.6; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.3); }
+}
+
+.r27-admin-bar {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+

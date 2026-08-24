@@ -1,0 +1,166 @@
+/* ─────────────────────────────────────────
+   NotificationToast Styles
+   ───────────────────────────────────────── */
+
+.notif-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 9990;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 360px;
+  width: 90%;
+  pointer-events: none;
+}
+
+.notif-toast {
+  pointer-events: auto;
+  background: rgba(15, 23, 42, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 16px;
+  padding: 14px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4),
+              0 0 20px rgba(99, 102, 241, 0.15);
+  animation: notifSlideIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+@keyframes notifSlideIn {
+  from { opacity: 0; transform: translateX(40px) scale(0.95); }
+  to { opacity: 1; transform: translateX(0) scale(1); }
+}
+
+.notif-toast--call {
+  border-color: rgba(99, 102, 241, 0.5);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5),
+              0 0 25px rgba(99, 102, 241, 0.3);
+}
+
+.notif-toast__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.notif-toast__type-tag {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: #a5b4fc;
+}
+
+.notif-toast__close {
+  background: transparent;
+  border: none;
+  color: #94a3b8;
+  cursor: pointer;
+  font-size: 0.85rem;
+  padding: 2px 6px;
+  border-radius: 4px;
+  transition: color 0.2s ease;
+}
+
+.notif-toast__close:hover {
+  color: #ffffff;
+}
+
+.notif-toast__body {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  margin-bottom: 10px;
+}
+
+.notif-toast__avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+.notif-toast__content {
+  flex: 1;
+  min-width: 0;
+}
+
+.notif-toast__title {
+  margin: 0 0 2px 0;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #f8fafc;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.notif-toast__text {
+  margin: 0 0 4px 0;
+  font-size: 0.8rem;
+  color: #cbd5e1;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.notif-toast__time {
+  font-size: 0.68rem;
+  color: #64748b;
+}
+
+.notif-toast__actions {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
+.notif-toast__btn {
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.notif-toast__btn--primary {
+  background: #6366f1;
+  color: #ffffff;
+}
+
+.notif-toast__btn--primary:hover {
+  background: #4f46e5;
+}
+
+.notif-toast__btn--accept {
+  background: #10b981;
+  color: #ffffff;
+}
+
+.notif-toast__btn--decline {
+  background: #ef4444;
+  color: #ffffff;
+}
+
+.notif-toast__btn--secondary {
+  background: rgba(255, 255, 255, 0.08);
+  color: #94a3b8;
+}
+
+.notif-toast__btn--secondary:hover {
+  background: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+}

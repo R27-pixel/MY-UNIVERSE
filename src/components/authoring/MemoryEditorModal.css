@@ -1,0 +1,197 @@
+.memory-editor-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 9995;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.memory-editor-modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(4, 6, 18, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.memory-editor-modal__container {
+  position: relative;
+  width: 100%;
+  max-width: 580px;
+  max-height: 90vh;
+  overflow-y: auto;
+  background: radial-gradient(circle at 50% 0%, rgba(26, 20, 55, 0.95) 0%, rgba(10, 12, 28, 0.98) 100%);
+  border: 1px solid rgba(168, 85, 247, 0.4);
+  border-radius: 20px;
+  padding: 24px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8), 0 0 30px rgba(168, 85, 247, 0.25);
+  box-sizing: border-box;
+  animation: modalPopIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes modalPopIn {
+  from { opacity: 0; transform: scale(0.94) translateY(10px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.memory-editor-modal__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 12px;
+}
+
+.memory-editor-modal__header h2 {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.25rem;
+  color: #f3e8ff;
+  margin: 0;
+  letter-spacing: 0.04em;
+}
+
+.memory-editor-modal__close {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  color: #cbd5e1;
+  font-size: 1.1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.memory-editor-modal__close:hover {
+  background: rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+}
+
+.memory-editor-modal__error {
+  background: rgba(239, 68, 68, 0.2);
+  border: 1px solid rgba(239, 68, 68, 0.4);
+  color: #fca5a5;
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-size: 0.8rem;
+  margin-bottom: 16px;
+}
+
+.memory-editor-modal__form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.memory-editor-modal__field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+}
+
+.memory-editor-modal__field label {
+  font-family: 'Space Grotesk', monospace;
+  font-size: 0.72rem;
+  color: #c084fc;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.memory-editor-modal__field input,
+.memory-editor-modal__field textarea {
+  background: rgba(15, 18, 40, 0.8);
+  border: 1px solid rgba(165, 180, 252, 0.25);
+  border-radius: 10px;
+  color: #ffffff;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.9rem;
+  padding: 10px 14px;
+  box-sizing: border-box;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.memory-editor-modal__field input:focus,
+.memory-editor-modal__field textarea:focus {
+  border-color: #c084fc;
+  box-shadow: 0 0 12px rgba(192, 132, 252, 0.3);
+}
+
+.memory-editor-modal__row {
+  display: flex;
+  gap: 12px;
+}
+
+.memory-editor-modal__star-section {
+  background: rgba(168, 85, 247, 0.08);
+  border: 1px solid rgba(168, 85, 247, 0.25);
+  border-radius: 14px;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 4px;
+}
+
+.memory-editor-modal__star-section h3 {
+  font-family: 'Space Grotesk', monospace;
+  font-size: 0.8rem;
+  color: #e879f9;
+  margin: 0;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.memory-editor-modal__actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.editor-btn {
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-family: 'Space Grotesk', monospace;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.editor-btn--cancel {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #94a3b8;
+}
+
+.editor-btn--cancel:hover {
+  background: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+}
+
+.editor-btn--save {
+  background: linear-gradient(135deg, #a855f7 0%, #6366f1 100%);
+  border: none;
+  color: #ffffff;
+  box-shadow: 0 0 16px rgba(168, 85, 247, 0.4);
+}
+
+.editor-btn--save:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 0 24px rgba(168, 85, 247, 0.6);
+}
+
+.editor-btn--save:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}

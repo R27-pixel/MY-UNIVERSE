@@ -1,0 +1,44 @@
+/* Virtual Joystick CSS */
+
+.virtual-joystick {
+  position: fixed;
+  bottom: 40px;
+  left: 40px;
+  width: 120px;
+  height: 120px;
+  z-index: 1000;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.virtual-joystick__base {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: rgba(168, 85, 247, 0.15);
+  border: 2px solid rgba(192, 132, 252, 0.4);
+  box-shadow: 0 0 20px rgba(168, 85, 247, 0.3);
+  backdrop-filter: blur(8px);
+}
+
+.virtual-joystick__knob {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 50px;
+  height: 50px;
+  margin-top: -25px;
+  margin-left: -25px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #c084fc 0%, #9333ea 100%);
+  border: 2px solid #ffffff;
+  box-shadow: 0 0 15px rgba(192, 132, 252, 0.8);
+  pointer-events: none;
+  transition: transform 0.05s linear;
+}
+
+.virtual-joystick--active .virtual-joystick__base {
+  background: rgba(168, 85, 247, 0.3);
+  border-color: rgba(240, 171, 252, 0.8);
+}

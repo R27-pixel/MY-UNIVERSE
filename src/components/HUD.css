@@ -1,0 +1,409 @@
+.hud {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-hud);
+  pointer-events: none;
+}
+
+.hud * {
+  pointer-events: auto;
+}
+
+/* ── Identity & Active Universe Pill ── */
+.hud__identity-pill {
+  position: absolute;
+  top: calc(var(--space-xl) + var(--safe-top));
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  background: rgba(13, 16, 26, 0.75);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  padding: 6px 16px;
+  border-radius: var(--radius-full);
+  box-shadow: 0 0 20px rgba(139, 92, 246, 0.15);
+  pointer-events: auto;
+  z-index: 12;
+}
+
+.hud__universe-title {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--accent-cool, #a78bfa);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.hud__user-info {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.65rem;
+  font-family: var(--font-mono);
+  color: var(--text-muted);
+}
+
+.hud__user-name {
+  color: #e2e8f0;
+  font-weight: 500;
+}
+
+.hud__role-chip {
+  padding: 1px 6px;
+  border-radius: 4px;
+  font-size: 0.55rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.hud__role-chip--owner {
+  background: rgba(234, 179, 8, 0.2);
+  color: #eab308;
+  border: 1px solid rgba(234, 179, 8, 0.4);
+}
+
+.hud__role-chip--admin {
+  background: rgba(168, 85, 247, 0.2);
+  color: #c084fc;
+  border: 1px solid rgba(168, 85, 247, 0.4);
+}
+
+.hud__role-chip--traveler {
+  background: rgba(59, 130, 246, 0.2);
+  color: #60a5fa;
+  border: 1px solid rgba(59, 130, 246, 0.4);
+}
+
+.hud__role-chip--guest {
+  background: rgba(100, 116, 139, 0.2);
+  color: #94a3b8;
+  border: 1px solid rgba(100, 116, 139, 0.4);
+}
+
+.hud__guest-chip {
+  background: rgba(239, 68, 68, 0.2);
+  color: #f87171;
+  border: 1px solid rgba(239, 68, 68, 0.4);
+  padding: 1px 6px;
+  border-radius: 4px;
+  font-size: 0.55rem;
+  font-weight: 700;
+}
+
+/* ── Identity Badge Utility (Shared with Modals) ── */
+.identity-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+}
+
+.identity-badge--universe {
+  background: rgba(139, 92, 246, 0.15);
+  border: 1px solid rgba(139, 92, 246, 0.4);
+  color: #c084fc;
+}
+
+.identity-badge--role {
+  border: 1px solid currentColor;
+}
+
+.identity-badge--owner {
+  background: rgba(234, 179, 8, 0.15);
+  color: #fde047;
+}
+
+.identity-badge--admin {
+  background: rgba(168, 85, 247, 0.15);
+  color: #e879f9;
+}
+
+.identity-badge--traveler {
+  background: rgba(59, 130, 246, 0.15);
+  color: #93c5fd;
+}
+
+.identity-badge--guest {
+  background: rgba(239, 68, 68, 0.15);
+  border: 1px solid rgba(239, 68, 68, 0.4);
+  color: #fca5a5;
+}
+
+/* ── Discovery Counter (Top Left) ── */
+
+.hud__discovery {
+  position: absolute;
+  top: calc(var(--space-xl) + var(--safe-top));
+  left: var(--space-xl);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xs);
+  animation: fadeIn 1s var(--ease-out) forwards;
+  opacity: 0;
+  animation-delay: 0.5s;
+}
+
+.hud__label {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  color: var(--text-muted);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.hud__counter {
+  font-family: var(--font-mono);
+  font-size: 1.2rem;
+  font-weight: 300;
+  display: flex;
+  align-items: baseline;
+  gap: 2px;
+}
+
+.hud__count {
+  color: var(--accent-cool);
+  font-weight: 400;
+}
+
+.hud__separator {
+  color: var(--glass-border-hover);
+  font-size: 0.9rem;
+  margin: 0 2px;
+}
+
+.hud__total {
+  color: var(--text-muted);
+}
+
+.hud__spam-hint {
+  margin-top: 6px;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: rgba(255, 182, 193, 0.85);
+  letter-spacing: 0.05em;
+  max-width: 240px;
+  line-height: 1.4;
+  text-shadow: 0 0 10px rgba(255, 105, 180, 0.3);
+}
+
+/* ── Actions Bar (Top Right Controls) ── */
+
+.hud__actions-bar {
+  position: absolute;
+  top: calc(var(--space-xl) + var(--safe-top));
+  right: var(--space-xl);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  z-index: 10;
+}
+
+.hud__letter-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  background: rgba(255, 215, 0, 0.12);
+  border: 1px solid rgba(255, 215, 0, 0.35);
+  border-radius: var(--radius-full);
+  color: #ffd700;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.15);
+  transition: all var(--duration-normal) var(--ease-out);
+  white-space: nowrap;
+}
+
+.hud__letter-btn:hover {
+  background: rgba(255, 215, 0, 0.25);
+  border-color: #ffd700;
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
+  transform: translateY(-1px);
+}
+
+.hud__chat-access {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: 6px 14px;
+  background: rgba(156, 108, 255, 0.18);
+  border: 1px solid rgba(156, 108, 255, 0.5);
+  border-radius: var(--radius-full);
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  cursor: pointer;
+  box-shadow: 0 0 20px rgba(156, 108, 255, 0.3);
+  transition: all var(--duration-normal) var(--ease-out);
+  animation: chatBtnPulse 2s ease-in-out infinite;
+  white-space: nowrap;
+}
+
+.hud__chat-access:hover {
+  background: rgba(156, 108, 255, 0.35);
+  border-color: rgba(255, 215, 0, 0.7);
+  transform: translateY(-1px);
+  box-shadow: 0 0 30px rgba(156, 108, 255, 0.5);
+}
+
+.hud__chat-pulse {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--star-gold);
+  box-shadow: 0 0 10px var(--star-gold);
+}
+
+@keyframes chatBtnPulse {
+  0%, 100% { border-color: rgba(156, 108, 255, 0.4); box-shadow: 0 0 15px rgba(156, 108, 255, 0.3); }
+  50% { border-color: rgba(255, 215, 0, 0.7); box-shadow: 0 0 25px rgba(255, 215, 0, 0.5); }
+}
+
+.hud__unread-badge {
+  background: #ef4444;
+  color: #ffffff;
+  font-size: 0.65rem;
+  font-weight: 700;
+  border-radius: 10px;
+  padding: 1px 6px;
+  margin-left: 2px;
+  box-shadow: 0 0 8px #ef4444;
+}
+
+.hud__sound {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-full);
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all var(--duration-normal) var(--ease-out);
+  -webkit-tap-highlight-color: transparent;
+  flex-shrink: 0;
+}
+
+.hud__sound:hover {
+  color: var(--text-secondary);
+  border-color: var(--glass-border-hover);
+  background: var(--glass-bg-hover);
+}
+
+/* ── Meta Info ── */
+
+.hud__meta {
+  position: absolute;
+  bottom: var(--space-xl);
+  right: var(--space-xl);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+  animation: fadeIn 1s var(--ease-out) forwards;
+  opacity: 0;
+  animation-delay: 0.9s;
+}
+
+.hud__meta-item {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  color: var(--text-muted);
+  letter-spacing: 0.1em;
+  opacity: 0.5;
+}
+
+/* ── Mobile Responsive Adjustments ── */
+
+@media (max-width: 768px) {
+  .hud__discovery {
+    top: calc(var(--space-md) + var(--safe-top));
+    left: var(--space-md);
+  }
+
+  .hud__actions-bar {
+    top: calc(var(--space-md) + var(--safe-top));
+    right: var(--space-md);
+    gap: 6px;
+  }
+
+  .hud__letter-btn,
+  .hud__chat-access {
+    padding: 5px 10px;
+    font-size: 0.65rem;
+  }
+
+  .hud__spam-hint {
+    max-width: 170px;
+    font-size: 0.6rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hud__identity-pill {
+    top: calc(8px + var(--safe-top));
+    padding: 3px 10px;
+    max-width: 85vw;
+    font-size: 0.65rem;
+  }
+
+  .hud__universe-title {
+    font-size: 0.65rem;
+  }
+
+  .hud__user-info {
+    font-size: 0.55rem;
+  }
+
+  .hud__discovery {
+    top: calc(54px + var(--safe-top));
+    left: 10px;
+    gap: 0;
+  }
+
+  .hud__label {
+    font-size: 0.5rem;
+  }
+
+  .hud__counter {
+    font-size: 0.95rem;
+  }
+
+  .hud__spam-hint {
+    display: none;
+  }
+
+  .hud__actions-bar {
+    top: calc(54px + var(--safe-top));
+    right: 10px;
+    gap: 4px;
+    max-width: 75vw;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+
+  .hud__letter-btn,
+  .hud__chat-access {
+    padding: 4px 8px;
+    font-size: 0.6rem;
+  }
+
+  .hud__sound {
+    width: 26px;
+    height: 26px;
+  }
+}
